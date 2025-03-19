@@ -1,0 +1,18 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username" required>
+      <mat-error *ngIf="userForm.controls['username'].hasError('required')">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" required>
+      <mat-error *ngIf="userForm.controls['email'].hasError('email')">
+        Invalid email
+      </mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button type="submit">Create User</button>
+  </form>
+  

@@ -1,0 +1,39 @@
+<h2>Edit User</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Username" formControlName="username" required>
+    <mat-error *ngIf="userForm.controls['username'].hasError('required')">
+      Username is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required>
+    <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+      Email is required.
+    </mat-error>
+    <mat-error *ngIf="userForm.controls['email'].hasError('email')">
+      Please enter a valid email address.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password" required type="password">
+    <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+      Password is required.
+    </mat-error>
+    <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
+      Password must be at least 6 characters long.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">
+    Save Changes
+  </button>
+  <button mat-button color="warn" routerLink="/">Cancel</button>
+</form>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
